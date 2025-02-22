@@ -1,18 +1,20 @@
 #ifndef BITCOINEXCHANGE__HPP
 #define BITCOINEXCHANGE__HPP
 
-#include <list>
+#include <map>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 class BitcoinExchange 
 {
     private:
-        std::string filename;
-        static float rate;
+        std::map<std::string, std::string> contents;
+        float rate;
+        void formatContents(std::string name);
     public :
         BitcoinExchange();
-        BitcoinExchange(std::string name);
+        BitcoinExchange(std::ifstream& file);
         BitcoinExchange(const BitcoinExchange &original);
         BitcoinExchange &operator=(const BitcoinExchange &original);
         ~BitcoinExchange();
