@@ -1,4 +1,5 @@
 #include "BitcoinExchange.hpp"
+#include <limits.h>
 
 BitcoinExchange::BitcoinExchange() {
 
@@ -13,17 +14,37 @@ BitcoinExchange::BitcoinExchange(std::ifstream &file)
     {   
         std::string key = str.substr(0, str.find(delimiter));
         std::string value = str.substr(key.length());
+        std::cout << value<<std::endl;   
+        std::string trimmed;
+ 
 
         if(value.empty())
         {
             key = "Error: bad input => " + key;
             value = "";
         }
-        
-        else if (value == "| -1")
+        else 
         {
-            key = "Error: not a positive number";
-            value = "";
+            int i ; 
+            trimmed = value.substr(1);
+            std::istringstream ( trimmed ) >> i;
+            if (i < 0)
+            {
+                key = "Error: not a positive number.";
+                value = "";
+            }
+            else if (i >= INT_MAX)
+            {
+                std::cout <<"hi"<<std::endl;
+                key = "Error: too large a number.";
+                value = "";
+            }
+            else if (i <= INT_MIN)
+            {
+                std::cout <<"hi"<<std::endl;
+                key = "Error: too small a number.";
+                value = "";
+            }
         }
         contents.push_back(std::pair<std::string, std::string>(key, value));
     }
@@ -42,12 +63,12 @@ BitcoinExchange::BitcoinExchange(std::ifstream &file)
                 std::string rate = findDB(validInputTime);
                 float rateFloat, secondFloat;
                 std::stringstream(rate) >> rateFloat;
-                std::stringstream(it->second) >> secondFloat;
-                
+                std::string trimmed = it->second.substr(1);
+                std::stringstream(trimmed) >> secondFloat;
                 std::cout << it->first  << " => " << rateFloat  * secondFloat<< std::endl;
             } 
             else
-            std::cout << it->first << std::endl;
+                std::cout << it->first << std::endl;
 
 
         }
@@ -79,38 +100,6 @@ std::string BitcoinExchange::findDB(time_t validInputTime)
         }
     }
     return NULL;
-}
-
-void BitcoinExchange::isValidFormat(std::string key, std::string rate)
-{
-    time_t validInputTime ;
-
-
-    for(std::list<std::pair<std::string, std::string> >::iterator it = contents.begin(); it != contents.end(); it++)
-    {
-        struct tm inputTime = {};
-
-        if (strptime(key.c_str(), "%Y-%m-%d", &inputTime) != NULL && it->first != "date" && !it->second.empty())
-        {
-                validInputTime = mktime(&inputTime);
-                findDB(validInputTime);
-        }
-      
-    }
-    (void)rate;
-    // std::cout << "rate " <<rate << std::endl;
-    // struct tm tmKey = {};
-    // if (strptime(key.c_str(), "%Y-%m-%d", &tmKey) != NULL)
-    // {
-     
-    //     time_t dbTime = mktime(&tmKey);
-    //     (void)dbTime;
-    //     std::cerr << "valid date format!" << dbTime << std::endl;
-    //     if(dbTime <= validInputTime)
-    //         std::cout << "check" << std::endl;
-    // }
-    
-    
 }
 
 

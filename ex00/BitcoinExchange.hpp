@@ -14,7 +14,6 @@ class BitcoinExchange
 {
     private :
         std::list<std::pair<std::string, std::string> > contents;      void formatContents(std::string name);
-        void isValidFormat(std::string key, std::string rate);
         std::string findDB(time_t validInputTime);
     public :
         BitcoinExchange();
