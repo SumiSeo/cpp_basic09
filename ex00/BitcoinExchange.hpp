@@ -5,13 +5,14 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <string>
+#include <list>
+
 
 class BitcoinExchange 
 {
     private:
-        std::map<std::string, std::string> contents;
-        float rate;
-        void formatContents(std::string name);
+        std::list<std::pair<std::string, std::string> > contents;      void formatContents(std::string name);
     public :
         BitcoinExchange();
         BitcoinExchange(std::ifstream& file);
