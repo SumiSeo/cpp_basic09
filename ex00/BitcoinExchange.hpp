@@ -7,12 +7,15 @@
 #include <sstream>
 #include <string>
 #include <list>
+#include <time.h>
 
 
 class BitcoinExchange 
 {
-    private:
+    private :
         std::list<std::pair<std::string, std::string> > contents;      void formatContents(std::string name);
+        void isValidFormat(std::string key, std::string rate);
+        std::string findDB(time_t validInputTime);
     public :
         BitcoinExchange();
         BitcoinExchange(std::ifstream& file);
