@@ -3,6 +3,7 @@
 
 RPN::RPN()
 {
+    std::cout << "default construtor called" << std::endl;
 
 };
 
@@ -28,3 +29,7 @@ RPN::~RPN()
 
 };
 
+void RPN::addStack(std::string arg)
+{
+    _stacks.push(arg);
+}
