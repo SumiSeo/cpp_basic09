@@ -40,18 +40,18 @@ int main(int argc, char **argv)
         return 0;
 
     }
-    else
+        
+    RPN r;
+    int i = 0 ;
+    i++;  
+    while(i < argc)
     {
-        argv++;   
-        RPN r;
-        int i = 0 ;
-        while(argv[i] != NULL)
-        {
-            r.addStack(argv[i]);
-            std::cout << "argv[i] : " << argv[i] << std::endl;
-            i++;
-        }
+        r.addStack(argv[i]);
+        i++;
     }
+    r.printStackInfo();
+
+
     
     return 0;
 
