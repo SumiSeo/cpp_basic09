@@ -6,11 +6,13 @@
 #include <sstream>
 #include <string>
 #include <cctype>
+#include <stdexcept>
 
 class RPN 
 {
     private :
         std::stack<std::string> _stacks;
+        std::stack<std::string> _splitted;
         static const char* _operations[4];
 
     public : 
@@ -21,6 +23,12 @@ class RPN
         RPN &operator=(const RPN &original);
         bool isValidInt(const std::string &s);
         void printStackInfo();
+        void calcStacks();
+        void processOperator(const std::string& op);
+        double stringToDouble(const std::string& str);
+        std::string doubleToString(double value);
+        void splitStr(std::string s);
+
         ~RPN();
  
 

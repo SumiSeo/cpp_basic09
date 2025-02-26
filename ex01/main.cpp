@@ -34,22 +34,27 @@ $>
 
 int main(int argc, char **argv)
 {
-    if(argc < 4)
+    if(argc != 2)
     {
-        std::cerr << "Please put correct operations and numbers. Something is missing..."<< std::endl;
+        std::cerr << "Error"<< std::endl;
         return 0;
 
     }
         
-    RPN r;
-    int i = 0 ;
-    i++;  
-    while(i < argc)
+    try
     {
-        r.addStack(argv[i]);
-        i++;
+        RPN r;
+        r.splitStr(argv[1]);
+        // r.calcStacks(); 
+
+        // r.printStackInfo();
     }
-    r.printStackInfo();
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+    
+   
 
 
     
