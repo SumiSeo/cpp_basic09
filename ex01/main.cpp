@@ -10,6 +10,7 @@ $> ./RPN "1 2 * 2 / 2 * 2 4 - +"
 $> ./RPN "(1 + 1)"
 Error
 */
+
 int main(int argc, char **argv)
 {
     if(argc != 2)
