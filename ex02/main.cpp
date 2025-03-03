@@ -16,11 +16,24 @@ Time to process a range of 5 elements with std::[..] : 0.00031 us
 Time to process a range of 5 elements with std::[..] : 0.00014 us
 */
 
+double stringToDouble(const std::string& str)
+ {
+    double result;
+    std::stringstream ss(str);
+    ss >> result;
+    if (ss.fail()) {
+        throw std::runtime_error("Invalid number format.");
+    }
+    return result;
+}
+
 int isValidInput(std::string s)
 {
-
-    std::cout << s << std::endl;
-    return 0;
+    int converted = stringToDouble(s);
+    if(converted  > 0 )
+        return 1;
+    else 
+        return 0;
 }
 int main(int argc, char **argv)
 {
@@ -31,13 +44,13 @@ int main(int argc, char **argv)
     }
     try
     {     
-        // std::istringstream iss(argv);
-        // isValidInput(argv);
-        // positive integer sequence  (Ford-Johnson algorithm.)
-        // std::string input = argv[1];
-        // std::cout << input << std::endl;
-        std::cout << "here" << std::endl;
-        (void)argv;
+        int i = 1;
+        while(argv[i])
+        {
+            if(!isValidInput(argv[i]))
+                throw std::runtime_error("Error");
+            i++;
+        }
     }
     catch(const std::exception& error)
     {
