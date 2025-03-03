@@ -14,7 +14,7 @@ all : $(NAME)
 
 .cpp.o :
 			$(CC) $(CFLAGS) -c $< -o $(<:.cpp=.o)
-
+			
 $(NAME) : $(OBJ)
 			$(CC) $(CFLAGS) -o $(NAME) -g3 $(OBJ)
 

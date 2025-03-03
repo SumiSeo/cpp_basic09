@@ -27,9 +27,8 @@ double stringToDouble(const std::string& str)
     return result;
 }
 
-int isValidInput(std::string s)
+int isValidInput(int converted)
 {
-    int converted = stringToDouble(s);
     if(converted  > 0 )
         return 1;
     else 
@@ -44,13 +43,25 @@ int main(int argc, char **argv)
     }
     try
     {     
+        PmergeMe m;
         int i = 1;
         while(argv[i])
         {
-            if(!isValidInput(argv[i]))
+            int converted = stringToDouble(argv[i]);
+            if(!isValidInput(converted))
                 throw std::runtime_error("Error");
+            else
+            {
+                m.init_vector(converted); 
+                m.init_deque(converted); 
+            }
             i++;
+        
         }
+        m.init_size(i - 1);
+        m.sort_vector();
+        m.sort_deque();
+
     }
     catch(const std::exception& error)
     {
