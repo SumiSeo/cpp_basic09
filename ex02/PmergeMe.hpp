@@ -35,6 +35,11 @@ class PmergeMe
         void insertion_sort(int left, int right);
         void merge_sort(int left, int mid, int right);
 
+        void print_after_deque(std::string type);
+        void print_before_deque(std::string type);
+        void insertion_sort_deque(int left, int right);
+        void merge_sort_deque(int left, int mid, int right);
+        void merge_insertion_sort_deque(int left, int right, int size);
         ~PmergeMe();
 };
 

@@ -60,7 +60,7 @@ int main(int argc, char **argv)
         }
         m.init_size(i - 1);
         m.sort_vector();
-        // m.sort_deque();
+        m.sort_deque();
 
     }
     catch(const std::exception& error)
