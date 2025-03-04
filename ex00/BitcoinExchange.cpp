@@ -14,7 +14,6 @@ BitcoinExchange::BitcoinExchange(std::ifstream &file)
     {   
         std::string key = str.substr(0, str.find(delimiter));
         std::string value = str.substr(key.length());
-        std::cout << value<<std::endl;   
         std::string trimmed;
  
 
@@ -28,20 +27,23 @@ BitcoinExchange::BitcoinExchange(std::ifstream &file)
             int i ; 
             trimmed = value.substr(1);
             std::istringstream ( trimmed ) >> i;
-            if (i < 0)
+            if (i < 0) 
             {
                 key = "Error: not a positive number.";
                 value = "";
             }
+            else if (i > 1000)
+            {
+                key = "Error: too large a number.";
+                value = "";
+            }
             else if (i >= INT_MAX)
             {
-                std::cout <<"hi"<<std::endl;
                 key = "Error: too large a number.";
                 value = "";
             }
             else if (i <= INT_MIN)
             {
-                std::cout <<"hi"<<std::endl;
                 key = "Error: too small a number.";
                 value = "";
             }
@@ -65,7 +67,7 @@ BitcoinExchange::BitcoinExchange(std::ifstream &file)
                 std::stringstream(rate) >> rateFloat;
                 std::string trimmed = it->second.substr(1);
                 std::stringstream(trimmed) >> secondFloat;
-                std::cout << it->first  << " => " << rateFloat  * secondFloat<< std::endl;
+                std::cout << it->first  << " => " << secondFloat<< " => "<< rateFloat  * secondFloat<< std::endl;
             } 
             else
                 std::cout << it->first << std::endl;

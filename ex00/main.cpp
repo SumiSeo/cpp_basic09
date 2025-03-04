@@ -14,7 +14,6 @@ int main(int argc, char **argv)
         file.open(fName.c_str());
         if(file.is_open())
         {
-            std::cout << "FILENAME : " << fName << std::endl;
             BitcoinExchange bte(file);
         }
         else
