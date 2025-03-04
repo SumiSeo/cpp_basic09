@@ -9,6 +9,7 @@
 #include <cctype>
 #include <deque>
 #include <stdexcept>
+#include <iomanip>
 
 class PmergeMe
 {
@@ -28,9 +29,12 @@ class PmergeMe
         void sort_vector(void);
         void sort_deque(void);
         void print_before(std::string type);
-        void print_after();
-        void print_first_exec_time();
+        void print_after(std::string type);
         void print_second_exec_time();
+        void merge_insertion_sort_vector(int left, int right, int size);
+        void insertion_sort(int left, int right);
+        void merge_sort(int left, int mid, int right);
+
         ~PmergeMe();
 };
 
