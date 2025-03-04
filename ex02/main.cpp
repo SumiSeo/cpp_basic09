@@ -10,6 +10,8 @@ least 3000 different integers.
 /*
 implement your algori"thm for each container
 ./PmergeMe 3 5 9 7 4 
+./PmergeMe `shuf -i 1-100000 -n 3000 | tr "\n" " "`
+./PmergeMe "-1" "2"
 Before: 3 5 9 7 4
 After: 3 4 5 7 9
 Time to process a range of 5 elements with std::[..] : 0.00031 us
@@ -22,7 +24,7 @@ double stringToDouble(const std::string& str)
     std::stringstream ss(str);
     ss >> result;
     if (ss.fail()) {
-        throw std::runtime_error("Invalid number format.");
+        throw std::runtime_error("Error");
     }
     return result;
 }
